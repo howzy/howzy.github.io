@@ -12,8 +12,9 @@ tags: HTTPS
 
 > HTTPS 协议的网站在地址栏前会有绿色的锁的图标，感觉有点逼格，就冲着这点，果断 HTTPS 走起。
 
-Github Pages 本身支持 HTTPS，但仅支持 github.io 域名。如果绑定了自己的域名，就不支持 HTTPS 了。幸运的是，CloudFlare 提供免费的启用 HTTPS 的解决方案。
-接下来就开始进入主题。
+Github Pages 本身支持 HTTPS，但仅支持 github.io 域名。如果绑定了自己的域名，就不支持 HTTPS 了。幸运的是，CloudFlare 提供免费的启用 HTTPS 的解决方案。接下来就开始进入主题。
+
+<!-- more -->
 
 ### 步骤一：配置 Github Pages
 
