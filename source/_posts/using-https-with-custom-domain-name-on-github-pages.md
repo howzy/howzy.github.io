@@ -1,7 +1,7 @@
 ---
 title: 为 Github Pages 绑定的自定义域名启用 HTTPS 协议
 date: 2017-07-21 01:09:26
-tags: HTTPS
+tags: [HTTPS, CloudFlare]
 ---
 
 ### 为什么要使用 HTTPS 协议呢？
