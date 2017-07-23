@@ -53,7 +53,7 @@ Github Pages 本身支持 HTTPS，但仅支持 github.io 域名。如果绑定�
 
 ### 步骤五：添加路由重定向规则
 
-使用通配符将路由重定向到 HTTPS 的链接。本例中将路由设置为：http://\*zhouhao.me/\*，协议设置为：Always Use HTTPS
+使用通配符将路由重定向到 HTTPS 的链接。本例中将路由设置为：{% raw %}http://*zhouhao.me/*{% endraw %}，协议设置为：Always Use HTTPS
 
 ![step8](/img/https_20170721_8.png)
 ![step9](/img/https_20170721_9.png)
