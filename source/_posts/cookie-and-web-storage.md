@@ -1,5 +1,5 @@
 ---
-title: Web 数据存储
+title: 浅析 Cookie 和 Web Storage 的区别
 date: 2017-07-27 22:34:03
 tags: [cookie, localStorage, sessionStorage]
 ---
@@ -43,7 +43,7 @@ Web Storage 有两种主要的存储类型，localStorage 本地存储以及 ses
   cookie: Firefox 限制 50 个，Opera 限制 30 个，IE7+ 限制 50 个，Safari 和 Chrome 没有硬性限制。一般浏览器限制 cookie 大小为 4kb 以内
 
   localStorage: Chrome 和 Safari 对每个源的限制在 2.5MB。而 iOS 版 Safari 和 Android 版 WebKit 的限制也是 2.5MB。
-  
+
   sessionStorag: Chrome、Safari、iOS 版 Safari 和 Android 版 WebKit 限制 2.5MB。IE8+ 和 Opera 限制 5MB。
 
 ### 基本操作 ###
