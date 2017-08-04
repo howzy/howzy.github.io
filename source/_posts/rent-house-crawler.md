@@ -21,6 +21,8 @@ date: 2017-08-03 23:50:22
 
 <!-- more -->
 
+项目源码地址：<a href="https://github.com/zhonce/rent-house-crawler.git" target="_blank">rent-house-crawler</a>
+
 ### 踩坑与提升
 
 > 前段时间学习了 MongoDB 的一些基础知识，正好借着这个 demo 能实践一下。
@@ -65,15 +67,75 @@ db.test.createIndex({ title: 1 }, { unique: true });
 
 ```
 // mongoose
-Topic.findOneAndUpdate({ title: '标题' }, { $set: { details: '详情' } }, { new: true });
+Topic.findOneAndUpdate(
+  { title: '标题' },
+  { $set: { details: '详情' } },
+  { new: true }
+);
 
 =====================================================================
 
 // mongo Shell
 
 // 方法一
-db.topic.findOneAndUpdate({ title: '标题' }, { $set: { details: '详情' } }, { returnNewDocument: true });
+db.topic.findOneAndUpdate(
+  { title: '标题' },
+  { $set: { details: '详情' } },
+  { returnNewDocument: true }
+);
 
 // 方法二
-db.topic.findAndModify({ query: { title: '标题' }, update: { $set: { details: '详情' } }, new: true });
+db.topic.findAndModify({
+  query: { title: '标题' },
+  update: { $set: { details: '详情' } },
+  new: true
+});
+```
+
+### 新技能 Get
+
+> 初次使用第三方库 <a href="https://nodemailer.com/about/" target="_blank" title="官方教程">nodemailer</a> 发送邮件，官网的教程还是非常简洁明了的，这里就搬运一下。
+
+**运行环境**
+
+- Node.js v6+
+
+**安装**
+
+```
+npm install nodemailer --save
+```
+
+**用法**
+
+```
+'use strict';
+const nodemailer = require('nodemailer');
+
+// 使用默认 SMTP 传输创建可重用的传输器对象
+let transporter = nodemailer.createTransport({
+  host: 'smtp.example.com', // 例如QQ邮箱：smtp.qq.com
+  port: 465,
+  secure: true, // 值为 true 时端口为 465，值为 false 时端口为587
+  auth: {
+    user: 'username@example.com',
+    pass: 'userpass' // 开启 POP3/SMTP 服务之后获得的授权码
+  }
+});
+
+// 使用 unicode 编码设置电子邮件数据
+let mailOptions = {
+  from: 'username@example.com', // 发件人邮箱
+  to: 'receiver1@example.com, receiver2@example.com', // 收件人邮箱列表
+  subject: '', // 邮件标题
+  html: '' // 邮件内容
+};
+
+// 使用定义的传输对象发送邮件
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
+    // 错误处理
+  }
+  console.log(info.messageId, info.response);
+});
 ```
