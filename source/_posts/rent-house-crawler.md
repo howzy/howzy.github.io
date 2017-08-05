@@ -21,7 +21,7 @@ date: 2017-08-03 23:50:22
 
 <!-- more -->
 
-项目源码地址：<a href="https://github.com/zhonce/rent-house-crawler.git" target="_blank">rent-house-crawler</a>
+项目源码地址：<a href="https://github.com/howzy/rent-house-crawler.git" target="_blank">rent-house-crawler</a>
 
 ### 踩坑与提升
 
