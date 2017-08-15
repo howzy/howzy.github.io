@@ -63,6 +63,11 @@ git add <filename>
 git reset HEAD <filename>
 ```
 
+撤销修改
+```
+git checkout -- <filename> // 丢弃工作区的修改，回退到最近一次 commit 或 add 状态
+```
+
 提交修改
 ```
 git commit -m "提交描述xxx"
