@@ -1,5 +1,4 @@
 ---
-layout: drafts
 title: Angular 组件通讯
 tags:
   - Angular
