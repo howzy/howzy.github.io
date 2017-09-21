@@ -60,7 +60,7 @@ var CookieUtil = {
         cookieStart = document.cookie.indexOf(cookieName),
         cookieValue = null;
 
-    if (cookieName > -1) {
+    if (cookieStart > -1) {
       var cookieEnd = document.cookie.indexOf(";", cookieStart);
       if (cookieEnd == -1) {
         cookieEnd = document.cookie.length;
