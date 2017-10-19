@@ -8,7 +8,7 @@ date: 2017-10-13 17:28:08
 
 使用 ECharts 图表库的主要流程是：首先引入 js 库，其次初始化作为图表载体的 dom 元素，然后设置图表配置项。在 angular 中可以利用 **自定义指令** 的形式提炼出图表的初始化和配置。先上代码，然后在讲解一下需要注意的点。
 
-![ECharts 入门示例](/img/use-ECharts_with_angular2_20171013.png)
+![ECharts 入门示例](/img/use_ECharts_with_angular2_20171013.png)
 
 <!--more-->
 
