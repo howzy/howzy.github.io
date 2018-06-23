@@ -12,7 +12,31 @@ date: 2018-03-19 01:32:08
 
 <!-- more -->
 
-### 一、安装并配置
+### 一、项目配置
+
+```
+yarn add eslint-plugin-prettier prettier -D
+
+// .eslintrc.json
+{
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "semi": false
+      }
+    ]
+  }
+}
+```
+
+### 二、VSCode 配置
+
 在扩展商店中搜索并安装 [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 然后在 首选项 -> 设置 中添加如下配置，然后就可以利用 prettier 来格式化代码了。
@@ -22,7 +46,8 @@ date: 2018-03-19 01:32:08
 "prettier.singleQuote": true, // 采用单引号
 ```
 
-### 二、引出问题
+### 三、引出问题
+
 上述步骤格式化代码后，会发现 html 没有格式化，这是为什么呢？
 
 通过翻阅 vetur 文档，了解到之前格式化 html 的 js-beautify 将被弃用，目前它默认是处于关闭状态，一旦 prettier 支持 html 的格式化，那么 vetur 将完全的移除 js-beautify。因此在现阶段，为了格式化 html，我们可以手动的开启 js-beautify。
@@ -49,5 +74,11 @@ Missing space before function parentheses  space-before-function-paren
 yarn add eslint-config-prettier -D
 
 // 配置 .eslintrc.js
-extends: ['prettier']
+extends: ['plugin:prettier/recommended']
+```
+
+检测的同时添加自动修复
+
+```
+"lint": "eslint --fix --ext .js,.vue src"
 ```
