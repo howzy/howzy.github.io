@@ -29,25 +29,33 @@ git push -u origin master
 
 创建并切换到该分支
 ```
-git checkout -b <name> // 创建并切换到该分支
+git checkout -b <name> // 创建并切换到该分支（以当前所在分支为副本）
 
 // 等价于
 git branch <name> // 创建分支
 git checkout <name> // 切换分支
+
+git checkout -b <name> [<origin/name>] // 从指定的远程分支创建本地分支
 ```
 
 删除分支
 ```
-git branch -d <name>
+git branch -d <name> // 删除本地分支
 
 git branch -D <name> // 强制删除分支（有过提交，但是还没有合并的分支）
+
+git branch -r -d <name> // 删除本地的远程分支（远程git服务器上仍然存在）
+
+git push -d origin <name> // 远程删除git服务器上的分支
 ```
 
 合并分支
 ```
 git merge <name> // 采用 Fast forward 模式，直接把当前分支指向被合并分支的最新提交
 
-git merge --no-ff -m "提交描述xxx" <name> // 禁用 Fast forward 模式，
+git merge --no-ff -m "提交描述xxx" <name> // 禁用 Fast forward 模式
+
+git cherry-pick <commitId> // 从其他分支指定的 commitId 合并
 ```
 > 通常，合并分支时，Git 会采用 Fast forward 模式，但在这种模式下，删除分支后，会丢掉分支信息。禁用这一模式，Git 就会在 merge 时生成一个新的 commit，这样从分支历史上就可以看出分支信息。
 
