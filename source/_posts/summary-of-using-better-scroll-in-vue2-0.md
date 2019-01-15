@@ -56,3 +56,13 @@ methods: {
   }
 }
 ```
+
+### 四、解决 iOS 系统滚动黏滞
+
+BetterScroll 滚动的是内部区域，body 元素其实是没有滚动的。但是在 iOS 系统中，内部元素在滚动的时候整个页面也会跟着滚动，有黏滞的感觉，视觉上滚动就会很不流畅。为了解决这个问题，可以通过阻止 touchmove 的默认动作来屏蔽 body 元素的‘滚动’效果。可以在希望阻止 touchmove 的任意元素上添加 `@touchmove.prevent`，比如项目根元素。
+
+```
+<div id="app" @touchmove.prevent>...</div>
+```
+
+最后，本文只是提供了思路，具体代码可以参照 [scroll-demo](https://github.com/howzy/scroll-demo)。
