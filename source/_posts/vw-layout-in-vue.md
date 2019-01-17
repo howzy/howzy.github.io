@@ -26,7 +26,7 @@ module.exports = {
 }
 ```
 
-`postcss-import` 主要功有是解决@import 引入路径问题。使用这个插件，可以让你很轻易的使用本地文件、node_modules 或者 web_modules 的文件。这个插件配合 postcss-url 让你引入文件变得更轻松。
+`postcss-import` 主要功能是解决@import 引入路径问题。使用这个插件，可以让你很轻易的使用本地文件、node_modules 或者 web_modules 的文件。这个插件配合 postcss-url 让你引入文件变得更轻松。
 `autoprefixer` 是用来自动处理浏览器前缀的一个插件。
 
 ### 安装插件
