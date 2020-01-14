@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://howzy.github.io">
-  <title>Tag: Nodejs | Howzy&#39;s blog</title>
+  <title>Git 实战手册 | Howzy&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Howzy&#39;s blog">
-<meta property="og:url" content="https://howzy.github.io/tags/Nodejs/index.html">
+  <meta name="description" content="一、前言先来说说 Git 最本质的工作流程吧，从远程仓库拉取代码到本地版本库，签出分支然后在本地工作区进行开发，通过暂存区将代码提交到版本库，最后再推送到远程仓库。这样的流程不难理解，但是在实际团队协作中，往往会涉及到自己的分支、其他成员的分支、公共分支等分支的合并、解决冲突、推送、回退之类的操作。为了梳理清楚 Git 的各种操作，本文将以 场景 + 解决方案 的形式组装成操作手册，便于自己日后查">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git 实战手册">
+<meta property="og:url" content="https://howzy.github.io/2020/01/14/git-combat-manual/index.html">
 <meta property="og:site_name" content="Howzy&#39;s blog">
+<meta property="og:description" content="一、前言先来说说 Git 最本质的工作流程吧，从远程仓库拉取代码到本地版本库，签出分支然后在本地工作区进行开发，通过暂存区将代码提交到版本库，最后再推送到远程仓库。这样的流程不难理解，但是在实际团队协作中，往往会涉及到自己的分支、其他成员的分支、公共分支等分支的合并、解决冲突、推送、回退之类的操作。为了梳理清楚 Git 的各种操作，本文将以 场景 + 解决方案 的形式组装成操作手册，便于自己日后查">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://howzy.github.io/img/git_reset_20170826.png">
+<meta property="og:updated_time" content="2020-01-14T14:55:24.080Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Howzy&#39;s blog">
+<meta name="twitter:title" content="Git 实战手册">
+<meta name="twitter:description" content="一、前言先来说说 Git 最本质的工作流程吧，从远程仓库拉取代码到本地版本库，签出分支然后在本地工作区进行开发，通过暂存区将代码提交到版本库，最后再推送到远程仓库。这样的流程不难理解，但是在实际团队协作中，往往会涉及到自己的分支、其他成员的分支、公共分支等分支的合并、解决冲突、推送、回退之类的操作。为了梳理清楚 Git 的各种操作，本文将以 场景 + 解决方案 的形式组装成操作手册，便于自己日后查">
+<meta name="twitter:image" content="https://howzy.github.io/img/git_reset_20170826.png">
   
     <link rel="alternative" href="/atom.xml" title="Howzy&#39;s blog" type="application/atom+xml">
   
@@ -140,68 +147,323 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git-combat-manual" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/08/03/rent-house-crawler/" class="archive-article-date">
-  	<time datetime="2017-08-03T15:50:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/08/03/rent-house-crawler/">豆瓣租房信息爬虫 - 总结</a>
+    <h1 class="article-title" itemprop="name">
+      Git 实战手册
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/01/14/git-combat-manual/" class="archive-article-date">
+  	<time datetime="2020-01-14T09:40:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>先来说说 Git 最本质的工作流程吧，从远程仓库拉取代码到本地版本库，签出分支然后在本地工作区进行开发，通过暂存区将代码提交到版本库，最后再推送到远程仓库。这样的流程不难理解，但是在实际团队协作中，往往会涉及到自己的分支、其他成员的分支、公共分支等分支的合并、解决冲突、推送、回退之类的操作。为了梳理清楚 Git 的各种操作，本文将以 场景 + 解决方案 的形式组装成操作手册，便于自己日后查阅，以及团队新成员能快速上手。</p>
+<h2 id="二、必备知识点"><a href="#二、必备知识点" class="headerlink" title="二、必备知识点"></a>二、必备知识点</h2><p>Git 的核心概念分为四个区块，分别是远程仓库、本地版本库、暂存区以及工作区，下面这张图能清晰的描述出这四个区块之间的关系。</p>
+<p><img src="/img/git_reset_20170826.png" alt="Git 核心区块"></p>
+<a id="more"></a>
+<blockquote>
+<p>全局说明：分支后的星号*代表的是当前分支。</p>
+</blockquote>
+<h2 id="三、拉取篇"><a href="#三、拉取篇" class="headerlink" title="三、拉取篇"></a>三、拉取篇</h2><p><strong>场景 1.</strong> 假设现有两个远程分支 master、branchA，并已经拉取到本地版本库，此时一同事删除了远程仓库中的分支 branchA，但是你电脑上仍然能看到 origin/branchA ，怎样才能更新仓库呢？</p>
+<p><strong>解决方法：</strong> 获取远程仓库的新分支以及删除远程仓库已删除的分支（本地版本库中的分支）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git fetch -p  // --prune(修剪)的缩写</div></pre></td></tr></table></figure>
+<p><strong>场景 2.</strong> 本地新增提交记录后，准备推到远程前会先从远程 <code>git pull</code> 拉取代码进行更新，假设此时其他同事已经推送新的代码，为什么这时候拉取会自动产生一个（看似）没有意义的提交记录，怎样让提交记录更直观明了？</p>
+<p>原始提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  origin/branchA</div><div class="line">     /</div><div class="line">A---B---E  branchA*</div></pre></td></tr></table></figure>
+<p>git pull 之后的提交记录多了一个 <code>Merge branch &quot;XXX&quot; into XXX</code>，也就是下例的 F 点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  origin/branchA</div><div class="line">     /     \</div><div class="line">A---B---E---F  branchA*</div></pre></td></tr></table></figure>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git pull --rebase</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      origin/branchA</div><div class="line">            |</div><div class="line">A---B---C---D---E  branchA*</div></pre></td></tr></table></figure>
+<blockquote>
+<p>git pull = git fetch + git merge // 拉取到本地版本库 + 合并到本地工作区<br>git pull –rebase = git fetch + git rebase // 拉取到本地版本库 + 工作区变基到最新版本库</p>
+</blockquote>
+<h2 id="四、分支篇"><a href="#四、分支篇" class="headerlink" title="四、分支篇"></a><strong>四、分支篇</strong></h2><p><strong>场景 1.</strong> 怎么从指定分支创建分支?</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 从目标分支创建本地分支，如果没有指定目标分支，默认为当前分支</div><div class="line">git branch &lt;name&gt; [&lt;targetBranch&gt;]</div><div class="line"></div><div class="line">// 创建并切换到该分支</div><div class="line">git checkout -b &lt;branchname&gt; [&lt;tragetBranch&gt;]</div></pre></td></tr></table></figure>
+<p><strong>场景 2.</strong> 怎么将本地分支关联到指定的远程分支?</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git branch --set-upstream-to=&lt;origin/branchname&gt;</div><div class="line">// 或者</div><div class="line">git branch -u &lt;origin/branchname&gt;</div></pre></td></tr></table></figure>
+<p><strong>场景 3.</strong> 怎么取消本地分支和远程分支的关联?</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch --unset-upstream [&lt;origin/branchname&gt;]</div></pre></td></tr></table></figure>
+<p><strong>场景 4.</strong> 怎么查看分支以及其关联的远程分支的详细信息?</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -vv</div></pre></td></tr></table></figure>
+<p><strong>场景 5.</strong> 怎么删除本地分支？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git branch -D &lt;branchname&gt;</div></pre></td></tr></table></figure>
+<p><strong>场景 6.</strong> 怎么删除远程分支？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git push -d origin &lt;branchname&gt;</div><div class="line">// 或者</div><div class="line">git push origin :branchname</div></pre></td></tr></table></figure>
+<p><strong>场景 7.</strong> 怎么移动/重命名分支？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 将目标分支 移动/重命名 到新分支</div><div class="line">git branch -m &lt;branchname&gt; [&lt;targetBranch&gt;]</div></pre></td></tr></table></figure>
+<p><strong>场景 8.</strong> 怎么合并分支？</p>
+<p><strong>解决方法：</strong><code>merge</code> 合并</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git merge &lt;branchname&gt;</div></pre></td></tr></table></figure>
+<p>情况1：原始提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  feature</div><div class="line">     /</div><div class="line">A---B  master*</div></pre></td></tr></table></figure>
+<p>情况1：合并之后的提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A---B---C---D  master*、feature</div></pre></td></tr></table></figure>
+<p>情况2：原始提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  feature</div><div class="line">     /</div><div class="line">A---B---E  master*</div></pre></td></tr></table></figure>
+<p>情况2：合并之后的提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  feature</div><div class="line">     /     \</div><div class="line">A---B---E---F master*</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在多人协作开发场景下，merge 操作容易产生分支间的闭环，使得分支提交信息变得不清晰，不利于分支维护。</p>
+</blockquote>
+<p><strong>场景 9.</strong> 怎么合并指定分支的指定提交记录？</p>
+<p><strong>解决方法：</strong><code>cherry-pick</code> 遴选</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">// 合并指定提交记录</div><div class="line">git cherry-pick &lt;commit&gt;</div><div class="line"></div><div class="line">// 合并多个提交记录</div><div class="line">git cherry-pick &lt;commit1&gt; &lt;commit2&gt; &lt;commit3&gt;</div><div class="line"></div><div class="line">// 若提交记录在同一分支上，则可以采用区间形式(start, end]，commit1不包含，commit3包含</div><div class="line">// 等价于合并了 commit2、commit3</div><div class="line">git cherry-pick &lt;commit1&gt;..&lt;commit3&gt;</div><div class="line"></div><div class="line">// 若省略了区间形式的起点，则起点默认为两个分支的交点</div><div class="line">git cherry-pick ..&lt;commit3&gt;</div></pre></td></tr></table></figure>
+<p>原始提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  feature</div><div class="line">     /</div><div class="line">A---B---E  master*</div></pre></td></tr></table></figure>
+<p><code>git cherry-pick B..D</code> 遴选之后的提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  feature</div><div class="line">     /</div><div class="line">A---B---E---C&apos;---D&apos;  master*</div></pre></td></tr></table></figure>
+<blockquote>
+<p>cherry-pick 操作会拷贝提交记录到当前分支，使得当前分支的提交信息更为清晰。</p>
+</blockquote>
+<p>扩展：<code>cherry-pick</code> 操作若产生了冲突，处理流程如下</p>
+<ol>
+<li>解决冲突，或者想中断此次操作 <code>git cherry-pick --abort</code>（中断则不需要后两步操作）</li>
+<li>添加到暂存区 <code>git add .</code></li>
+<li>继续遴选 <code>git cherry-pick --continue</code></li>
+</ol>
+<p><strong>场景 10.</strong> 从公共分支签出特性分支进行新功能开发，开发完后准备合并回功公共分支，此时发现公共分支已经有其他人推送新的提交记录，此时怎么以公共分支来更新特性分支？</p>
+<p><strong>解决方法：</strong>通过 <code>rebase</code> 变基，将当前分支的基点移动到目标分支上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// branchname 默认为当前分支，可省略</div><div class="line">git rebase &lt;targetBranch&gt; [&lt;branchname&gt;]</div><div class="line"></div><div class="line">// 等价于下面两条命令</div><div class="line">git checkout &lt;branchname&gt;</div><div class="line">git rebase &lt;targetBranch&gt;</div></pre></td></tr></table></figure>
+<p>原始提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">      C---D  feature</div><div class="line">     /</div><div class="line">A---B---E  master*</div></pre></td></tr></table></figure>
+<p><code>git rebase master</code> 变基之后的提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">          C&apos;---D&apos;  feature*</div><div class="line">         /</div><div class="line">A---B---E  master</div></pre></td></tr></table></figure>
+<blockquote>
+<p>变基操作能更新当前分支的基点（起点），使当前分支包含公共分支上新的提交记录，这样有个好处就是如果和主分支存在冲突，可以在特性分支上提前解决。</p>
+<p>因为重塑了历史提交记录，所以变基后当前分支会和远程分支不一致，需要采用强制推送（参见下文）覆盖远程分支。</p>
+</blockquote>
+<p>扩展：<code>rebase</code> 操作若产生了冲突，处理流程如下</p>
+<ol>
+<li>解决冲突，或者想中断此次操作 <code>git rebase --abort</code>（中断则不需要后两步操作）</li>
+<li>添加到暂存区 <code>git add .</code></li>
+<li>继续变基 <code>git rebase --continue</code></li>
+</ol>
+<p><strong>场景 11.</strong> 怎么合并多个提交记录？</p>
+<p><strong>解决方法：</strong><code>git rebase --interactive</code> 或者缩写形式 <code>git rebase -i</code>交互式变基</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// commit 为需要处理的提交记录区间的父节点</div><div class="line">git rebase -i &lt;commit&gt;</div></pre></td></tr></table></figure>
+<p>原始提交记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A---B---C---D feature*</div></pre></td></tr></table></figure>
+<p>需要合并 C、D 两个提交记录，<code>git rebase -i B</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pick a0a6eba feat: 新增 C 功能</div><div class="line">pick 95f09e5 feat: 新增 D 功能</div></pre></td></tr></table></figure>
+<p>将 D 提交记录合并进 C 中 ，所以把 D 记录的 <code>pick</code> 改为 <code>squash</code>，然后保存退出即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pick a0a6eba feat: 新增 C 功能</div><div class="line">squash 95f09e5 feat: 新增 D 功能</div></pre></td></tr></table></figure>
+<p>最终的提交记录，E 点则包含了 C 和 D 的全部改动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A---B---E feature*</div></pre></td></tr></table></figure>
+<p>扩展：交互式变基过程中会自动进入 vi 编辑模式，参数解释如下</p>
+<ol>
+<li>p，pick 选中</li>
+<li>r，reword 选中，并且修改提交信息</li>
+<li>e，edit 选中，rebase 时会暂停，允许你修改这个 commit</li>
+<li>s，squash 选中，会将当前 commit 与上一个 commit 合并</li>
+<li>f，fixup ，与 squash 相同，但不会保存当前 commit 的提交信息</li>
+<li>x，exec 执行其他 shell 命令</li>
+</ol>
+<h2 id="五、提交篇"><a href="#五、提交篇" class="headerlink" title="五、提交篇"></a><strong>五、提交篇</strong></h2><p><strong>场景 1.</strong> 最近的一次提交记录信息错误怎么修改？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git commit --amend -m &apos;新的提交信息&apos;</div></pre></td></tr></table></figure>
+<p><strong>场景 2.</strong> 最近的一次提交，发现遗漏了部分改动？</p>
+<p><strong>解决方法：</strong>出于提交信息的完整性考虑，在不新增提交记录的情况下将遗漏的改动合并到本次提交中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 将遗漏的文件改动添加到暂存区</div><div class="line">git add &lt;filename&gt;</div><div class="line"></div><div class="line">// 将暂存区中的所有文件合并到最近一次提交中，</div><div class="line">// 如果不带 --no-edit 参数，则在合并之后会进入提交信息修改面板</div><div class="line">git commit --amend --no-edit</div></pre></td></tr></table></figure>
+<h2 id="六、推送篇"><a href="#六、推送篇" class="headerlink" title="六、推送篇"></a><strong>六、推送篇</strong></h2><p><strong>场景 1.</strong> 怎么推送到远程指定分支？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 推送到远程指定分支，并创建关联</div><div class="line">git push -u origin &lt;branchname&gt;</div><div class="line"></div><div class="line">// 若本地分支已经与远程分支关联，则可省略远程分支</div><div class="line">git push</div></pre></td></tr></table></figure>
+<p><strong>场景 2.</strong> 怎么强制推送到远程分支？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push -f // --force 的缩写</div></pre></td></tr></table></figure>
+<p>若在强制推送的过程中，已经有其他人推送到该远程分支，则会使他人的提交记录丢失，<strong><code>为了更安全的推送</code></strong>，可用如下命令。<strong><code>在他人推送了新的提交的情况下，强制推送会被拒绝</code></strong>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --force-with-lease</div></pre></td></tr></table></figure>
+<p>扩展：需要强制推送的场景可能如下</p>
+<ul>
+<li>分支 <code>git rebase</code> 变基操作后</li>
+<li>将错误代码推送到了远程，想要丢弃此提交记录（建议用下文介绍的 <code>git revert</code> 操作）</li>
+</ul>
+<blockquote>
+<p>强制推送到远程分支会覆盖远程，若不熟悉此命令，请慎用！</p>
+</blockquote>
+<h2 id="七、撤销篇"><a href="#七、撤销篇" class="headerlink" title="七、撤销篇"></a><strong>七、撤销篇</strong></h2><p><strong>场景 1.</strong> 怎么撤销本地工作区文件的改动？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 丢弃工作区某个文件的改动</div><div class="line">git checkout -- &lt;filePath&gt;</div><div class="line"></div><div class="line">// 丢弃工作区所有文件的改动</div><div class="line">git checkout -- .</div></pre></td></tr></table></figure>
+<blockquote>
+<p>撤销本地工作的改动后，文件会回退到最近一次 commit 或 add 状态。</p>
+</blockquote>
+<p><strong>场景 2.</strong> 怎么撤销暂存区的改动？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 当没有指定 filename 时，表示撤销暂存区中的所有文件</div><div class="line">git reset HEAD &lt;filename&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>撤销暂存区的改动后，文件会回到工作区状态。</p>
+</blockquote>
+<p><strong>场景 3.</strong> 怎么撤销本地版本库的改动？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 回退到指定的提交记录</div><div class="line">git reset [&lt;mode&gt;] [&lt;commit&gt;]</div></pre></td></tr></table></figure>
+<blockquote>
+<p>通过指定 mode 参数，使回退之后的文件处于相应状态：</p>
+<ul>
+<li>–soft：将当前分支重置到指定 <commit>，当前版本与指定版本间的改动文件处于 <strong>暂存区</strong> 中，待提交状态。</commit></li>
+<li>–hard：重置 <strong>暂存区</strong> 和 <strong>工作区</strong>，自 <commit> 以来暂存区和工作区中的任何修改都被 <strong>丢弃</strong>。</commit></li>
+<li>–mixed（默认）：将当前分支重置到指定 <commit>，当前版本与指定版本间的改动文件处于 <strong>工作区</strong> 中，<strong>‘not staged’</strong> 状态。</commit></li>
+</ul>
+</blockquote>
+<p>扩展：HEAD 可以理解为一个指针，总是指向当前分支上最近一次的提交记录。HEAD^ 表示上一个提交记录，HEAD^^表示上两个提交记录，HEAD~n 表示上 n 个提交记录。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">           HEAD^/HEAD~1</div><div class="line">                |</div><div class="line">A---B---C---D---E---F  branchA</div><div class="line">            |       |</div><div class="line">    HEAD^^/HEAD~2   HEAD</div></pre></td></tr></table></figure>
+<p><strong>场景 4.</strong> 下班前急匆匆的将代码推到远程仓库，然后愉快的回家了，结果第二天发现推远程的代码出错了（手动滑稽 :p ），这时候怎么撤销远程仓库的改动？</p>
+<p><strong>解决方法：</strong><code>revert</code> 逆向修改，然后重新提交并推送到远程仓库。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 撤销修改</div><div class="line">git revert &lt;commit&gt;</div><div class="line">// 推送到远程仓库，实现远程仓库的撤销</div><div class="line">git push</div></pre></td></tr></table></figure>
+<p>扩展：<code>revert</code> 和 <code>reset</code> 的区别</p>
+<p><code>revert</code> 是新增一次提交记录，其修改内容正好抵消指定 <commit> 的改动，而 <code>reset</code> 的撤销效果是重置了版本库。假设本地版本库和远程仓库一致，<code>reset</code> 撤销了一个提交，此时本地版本库落后远程仓库一个版本，<code>git push</code> 推送到远程会失败，而 <code>revert</code> 新增了一个提交，本地版本库领先远程仓库一个记录，此时 <code>git push</code> 可以正常推送到远程。</commit></p>
+<h2 id="八、日志篇"><a href="#八、日志篇" class="headerlink" title="八、日志篇"></a><strong>八、日志篇</strong></h2><p><strong>场景 1.</strong> 本地 commit 提交了但是未推送到远程仓库，此时 <code>git reset --hard</code> 误操作强制回滚，弄丢的提交记录怎么恢复？</p>
+<p><strong>解决方法：</strong>通过 <code>git reflog</code> 查看引用日志，找到误删的提交记录，然后回滚到这条被删除的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reflog // Reference logs(引用日志)，能记录 HEAD 和分支引用所指向的历史</div></pre></td></tr></table></figure>
+<p>假设本地提交了三次 commit，然后误操作强制回滚到第一次提交，导致第二、三次的提交全部丢失</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// git reflog 引用日志输出格式如下</div><div class="line">1c36188 HEAD@&#123;0&#125;: reset: moving to 1c36188</div><div class="line">d921970 HEAD@&#123;1&#125;: commit: feature-3</div><div class="line">1c002dd HEAD@&#123;2&#125;: commit: feature-2</div><div class="line">1c36188 HEAD@&#123;3&#125;: commit (initial): feature-1</div></pre></td></tr></table></figure>
+<p>找到误删的提交记录 feature-2 和 feature-3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git reset --hard d921970</div></pre></td></tr></table></figure>
+<h2 id="九、贮藏篇"><a href="#九、贮藏篇" class="headerlink" title="九、贮藏篇"></a><strong>九、贮藏篇</strong></h2><p><strong>场景 1.</strong> 当正在编写代码的时候，接到了一个紧急任务，需要切换分支去开发，此时未完成的代码怎么保存？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 将全部未保存的代码添加到贮藏区，若未填写描述信息，则以上一次 commit 的信息记录</div><div class="line">git stash [push [-m &lt;message&gt;]]</div></pre></td></tr></table></figure>
+<p><strong>场景 2.</strong> 怎么查看贮藏区中保存的代码？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git stash list</div><div class="line"></div><div class="line">// 若存在贮藏的代码，则输出格式如下</div><div class="line">stash@&#123;0&#125;: On feature: 新功能开发未完成，先贮藏一下       // 添加了描述信息</div><div class="line">stash@&#123;1&#125;: WIP on master: 8e50dc3a feat：添加新功能xxx  // 未填写描述信息</div></pre></td></tr></table></figure>
+<p><strong>场景 3.</strong> 怎么取出贮藏的代码？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 恢复指定下标的贮藏代码，并删除对应的贮藏列表，index 默认为 0</div><div class="line">git stash pop [index]</div><div class="line"></div><div class="line">// 等价于下面两条命令</div><div class="line">git stash apply [index] // 取出贮藏</div><div class="line">git stash drop [index] // 删除贮藏列表</div></pre></td></tr></table></figure>
+<p><strong>场景 4.</strong> 怎么清空贮藏列表？</p>
+<p><strong>解决方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git stash clear</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Nodejs</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">MongoDB</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://howzy.github.io/2020/01/14/git-combat-manual/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/12/31/explore-the-composition-api-of-vue3.0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初探 Vue 3.0 之 Composition API</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
 
 
           </div>
@@ -224,9 +486,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
